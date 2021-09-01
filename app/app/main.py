@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import redis 
 # import boto3
 
@@ -6,6 +6,7 @@ app = Flask(__name__) #setting up db
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite' #Name of path to DB, relative path
 
 from models import db, DevResource
+
 
 red = redis.Redis(host='redis', port=6379, db=0) #not sure about port and db = 0
 
@@ -34,3 +35,4 @@ def add():
     print(red.hgetall(topic))
 
     return render_template('index.html', saved=1, topic=topic, description=red.hget(topic, "description"), url_link=red.hget(topic, "url_link"))
+
