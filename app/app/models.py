@@ -2,9 +2,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class Linux(db.Model):
+class linuxTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    url_link = db.Column(db.String) #should this be a list?
+    url_link = db.Column(db.String)
 
     def __init__(self, id, url_link):
         self.id=id
@@ -13,9 +13,9 @@ class Linux(db.Model):
     def __repr__(self): #prints out representation of object, 
         return f'<topic-description-url_link : {self.id}-{self.url_link}'
 
-class Python(db.Model):
+class pythonTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    url_link = db.Column(db.String) #should this be a list?
+    url_link = db.Column(db.String)
 
     def __init__(self, id, url_link):
         self.id=id
@@ -24,9 +24,9 @@ class Python(db.Model):
     def __repr__(self): #prints out representation of object, 
         return f'<topic-description-url_link : {self.id}-{self.url_link}'
 
-class Docker(db.Model):
+class dockerTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    url_link = db.Column(db.String) #should this be a list?
+    url_link = db.Column(db.String)
 
     def __init__(self, id, url_link):
         self.id=id
@@ -35,9 +35,9 @@ class Docker(db.Model):
     def __repr__(self): #prints out representation of object, 
         return f'<topic-description-url_link : {self.id}-{self.url_link}'
 
-class AWS(db.Model):
+class awsTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    url_link = db.Column(db.String) #should this be a list?
+    url_link = db.Column(db.String)
 
     def __init__(self, id, url_link):
         self.id=id
