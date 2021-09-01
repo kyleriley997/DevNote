@@ -14,12 +14,26 @@ with app.app_context():
 
 red = redis.Redis(host='redis', port=6379, db=0)
 
-@app.route("/update/<int:topic_id>", methods = ["POST", "GET"])
-def update(topic_id):
+# @app.route("/update/<int:topic_id>", methods = ["POST", "GET"])
+# def update(topic_id):
 
-    if url_for("linux"):
-    if url_for("python"):
-    if url_for("github"):
-    if url_for("aws"):
-    if url_for("boto3"):
-    updateTopic = 
+#     if url_for("linux"):
+#     if url_for("python"):
+#     if url_for("github"):
+#     if url_for("aws"):
+#     if url_for("boto3"):
+#     updateTopic = 
+
+# create different delete routes for each url page. No if and else. 
+@app.route('/delete/<int:topic>', methods=['POST']) 
+def delete(topic_id):
+    topic = DevResource.query.filter_by(id=topic_id).first()
+    db.session.delete(topic)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+    #if else, if choosen, add to or delete from
+
+if __name__ == "__main__":
+    # Only for debugging while developing
+    app.run(host='0.0.0.0', debug=True, port=80)
