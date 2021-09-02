@@ -12,7 +12,7 @@ with app.app_context():
     db.create_all()
     db.session.commit()
 
-red = redis.Redis(host='redis', port=6379, db=0) #not sure about port and db = 0
+red = redis.Redis(host='redis', port=6379, db=0) #redis port
 
 @app.route("/")
 def main():
@@ -22,7 +22,7 @@ def main():
     
 @app.route("/addLinux", methods=["POST"])
 def addLinux():
-    url_link = request.form.get("url_link")
+    url_link = request.form("url_link")
 
     new_record = linuxTable(url_link=url_link)
     db.session.add(new_record)
