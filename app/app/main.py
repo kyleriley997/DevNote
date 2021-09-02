@@ -19,7 +19,31 @@ def main():
     # records = DevResource.query.all()
     # print(records) #prints entire db records
     return render_template("base.html") #(, records=records)
-    
+
+@app.route("/linuxPage")
+def linuxPage():
+    linux_list =linuxTable.query.all() #returns list of item
+    print(linux_list)
+    return render_template('linux.html',linux_list=linux_list) #what is displayed on page
+
+@app.route("/pythonPage")
+def pythonPage():
+    py_list = pythonTable.query.all() #returns list of item
+    print(py_list)
+    return render_template('python.html',py_list=py_list) #what is displayed on page
+
+@app.route("/dockerPage")
+def dockerPage():
+    dock_list = dockerTable.query.all() #returns list of item
+    print(dock_list)
+    return render_template('docker.html',dock_list=dock_list) #what is displayed on page
+
+@app.route("/awsPage")
+def awsPage():
+    aws_list = awsTable.query.all() #returns list of item
+    print(aws_list)
+    return render_template('aws.html',aws_list=aws_list) #what is displayed on page
+
 @app.route("/addLinux", methods=["POST"])
 def addLinux():
     url_link = request.form("url_link")
@@ -27,15 +51,15 @@ def addLinux():
     new_record = linuxTable(url_link=url_link)
     db.session.add(new_record)
     db.session.commit()
-
+    
     red.hset(id, "url_link", url_link)
 
     #record = linuxTable.query.filter_by(id=id).first() #filters by id #
     #print(record)
 
     print(red.hgetall(id))
-
-    return render_template('linux.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
+    return redirect(url_for("linuxPage"))
+    #return render_template('linux.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 @app.route("/addPython", methods=["POST"])
 def addPython():
@@ -85,7 +109,7 @@ def addAWS():
     #print(record)
 
     print(red.hgetall(id))
-
+    #return redirect(url_for("awsPage"))
     return render_template('aws_page.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 
@@ -119,6 +143,66 @@ def deleteAWS(topic_id):
     db.session.delete(topic)
     db.session.commit()
     return redirect(url_for('aws_page.html'))
+
+@app.route("/updateLinux/<int:topic_id>", methods = ["POST", "GET"])
+def updateLinux(topic_id):
+    #update current item
+    updateTopic = linuxTable.query.filter_by(id=topic_id).first()
+    if request.method == "POST":
+            #print("In IF statement")
+            updateTopic.url_link = request.form["updateLinux"]
+            try:
+               db.session.commit()
+               return redirect(url_for("linuxPage"))
+            except:
+               return "There was a problem updating the linux table"
+    else: 
+        return render_template("update_linux.html", updateTopic=updateTopic)
+
+@app.route("/updatePython/<int:topic_id>", methods = ["POST", "GET"])
+def updatePython(topic_id):
+    #update current item
+    updateTopic = pythonTable.query.filter_by(id=topic_id).first()
+    if request.method == "POST":
+            #print("In IF statement")
+            updateTopic.url_link = request.form["updatePython"]
+            try:
+               db.session.commit()
+               return redirect(url_for("pythonPage"))
+            except:
+               return "There was a problem updating the python table"
+    else: 
+        return render_template("update_python.html", updateTopic=updateTopic)
+
+@app.route("/updateDocker/<int:topic_id>", methods = ["POST", "GET"])
+def updateDocker(topic_id):
+    #update current item
+    updateTopic = dockerTable.query.filter_by(id=topic_id).first()
+    if request.method == "POST":
+            #print("In IF statement")
+            updateTopic.url_link = request.form["updateDocker"]
+            try:
+               db.session.commit()
+               return redirect(url_for("dockerPage"))
+            except:
+               return "There was a problem updating the docker table"
+    else: 
+        return render_template("update_docker.html", updateTopic=updateTopic)
+
+@app.route("/updateAWS/<int:topic_id>", methods = ["POST", "GET"])
+def updateAWS(topic_id):
+    #update current item
+    updateTopic = awsTable.query.filter_by(id=topic_id).first()
+    if request.method == "POST":
+            #print("In IF statement")
+            updateTopic.url_link = request.form["updateAWS"]
+            try:
+               db.session.commit()
+               return redirect(url_for("awsPage"))
+            except:
+               return "There was a problem updating the linux table"
+    else: 
+        return render_template("update_AWS.html", updateTopic=updateTopic)
 
 
 if __name__ == "__main__":
