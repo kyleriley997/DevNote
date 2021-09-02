@@ -58,8 +58,8 @@ def addLinux():
     #print(record)
 
     print(red.hgetall(id))
-    return redirect(url_for("linuxPage"))
-    #return render_template('linux.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
+    return redirect(url_for("linux.html"))
+    # return render_template('linux.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 @app.route("/addPython", methods=["POST"])
 def addPython():
