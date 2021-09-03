@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Linux Commands Resources</title>
+<div class='ui segment'> 
+
+    <a class='ui blue button' href="/">Home</a>
+
+    <a class='ui blue button' href="/linuxPage">Linux</a>
+      
+    <a class='ui blue button' href="/pythonPage">Python</a>
+      
+    <a class='ui blue button' href="/dockerPage">Docker</a>
+      
+    <a class='ui blue button' href="/awsPage">AWS</a>
+      
+</div>
+<!-- <title>Linux Commands Resources</title> -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevNote</title>
-  
+    
     <center>
     
     <body>
@@ -23,6 +35,15 @@
     <li>LINUX RESOURCES</li>
     <br>
     <br>
+    {% for resource in linux_list %} <!--allows us to access items in todo_list-->
+    <div class='ui segment'>
+        <p class='ui big header'> {{resource.id}} | {{resource.url_link}} </p> <!--shows id and title of items in todo list-->
+
+        <!--adds update and delete button-->
+        <a class='ui blue button' href="/updateLinux/{{ resource.id }}">Update</a>
+        <a class='ui red button' href="/deleteLinux/{{ resource.id }}">Delete</a>
+    </div>
+    {% endfor %}
 
 </head>
 
