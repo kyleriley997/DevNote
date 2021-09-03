@@ -1,68 +1,29 @@
 <!DOCTYPE>
 <h lang="en">
 
-  <head>
+<head>
+  <center>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Devnote </title>
     <link rel="stylesheet" href="./css/style.css">
-
-    {% block head %}
-    DevNote
-    {% endblock %}
+  </center>
 </head>
+
 <body>
   
 {% block body %}
 <h2> DevNote </h2>
 
 <div class='ui segment'> 
+<!-- had to route from main.py to connect to server --> 
 
-  <a class='ui blue button' href="linux.html">linux</a>
+  <a class='ui blue button' href="/linuxPage">linux</a>
 
-  <a class='ui blue button' href="python.html">python</a>
+  <a class='ui blue button' href="/pythonPage">python</a>
 
-  <a class='ui blue button' href="docker.html">docker</a>
+  <a class='ui blue button' href="/dockerPage">docker</a>
 
-  <a class='ui blue button' href="aws_page.html">aws</a>
+  <a class='ui blue button' href="/awsPage">aws</a>
 
 </div>
-
-
-
-<!-- <p>The select element defines a drop-down list:</p>
-
-<form action="/action_page">
-  <label for="routes">Choose a Topic:</label>
-  <select title="routes" description="routes">
-    <option value="linux">Linux</option>
-    <option value="Python">Python</option>
-    <option value="Docker">Docker</option>
-    <option value="AWS">AWS</option>
-  </select> -->
-  <!-- <form method= "POST" action="base.html"></form>
-  <input type="submit">
-</form>
-{% endblock %}
-</body> --> -->
-
-
-
-<!-- p> <a href = "python.html" >20 Linux commands every sysadmin should know</a></p>
-    <p>This is link will show you is basic BASH commands you can use 
-        on a linux machine. -->
-
-    <form action="{{ url_for('base.html') }}" method="post">
-      <label for="routes">Choose a Topic:</label>
-      <select request.form.get="url_link" description="url_link">
-        <option value= "linux.html" methods="post">Linux</option>
-        <option value="Python">Python</option>
-        <option value="Docker">Docker</option>
-        <option value="AWS">AWS</option>
-      </select>
-      <input type="submit">
-    </form>
-    {% endblock %}
-  </body>
-
-  </html>
