@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Devnote </title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
     
 
 
@@ -15,8 +15,8 @@
 <h2> DevNote </h2>
 
 <div class='ui segment'> 
-
-  <a class='ui blue button' href="/linuxPage">linux</a>
+<!-- had to route from main.py to connect to server -->
+  <a class='ui blue button' href="/linuxPage">linux</a> 
 
   <a class='ui blue button' href="/pythonPage">python</a>
 
