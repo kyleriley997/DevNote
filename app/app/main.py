@@ -52,13 +52,13 @@ def addLinux():
     db.session.add(new_record)
     db.session.commit()
     
-    red.hset(id, "url_link", url_link)
+    red.hset("url_link", url_link)
 
     #record = linuxTable.query.filter_by(id=id).first() #filters by id #
     #print(record)
 
     print(red.hgetall(id))
-    return redirect(url_for("linux.html"))
+    return redirect(url_for('linuxPage'))
     # return render_template('linux.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 @app.route("/addPython", methods=["POST"])
@@ -114,35 +114,35 @@ def addAWS():
 
 
 # create different delete routes for each url page. No if and else. 
-@app.route('/deleteLinux/<int:topic_id>', methods=['POST']) 
+@app.route('/deleteLinux/<int:topic_id>') 
 def deleteLinux(topic_id):
-    topic = linuxTable.query.filter_by(id=topic_id).first()
-    db.session.delete(topic)
+    topic_id = linuxTable.query.filter_by(id=topic_id).first()
+    db.session.delete(topic_id)
     db.session.commit()
-    return redirect(url_for('linux.html'))
+    return redirect(url_for('linuxPage'))
 
    
-@app.route('/deletePython/<int:topic_id>', methods=['POST']) 
+@app.route('/deletePython/<int:topic_id>') 
 def deletePython(topic_id):
-    topic = pythonTable.query.filter_by(id=topic_id).first()
-    db.session.delete(topic)
+    topic_id = pythonTable.query.filter_by(id=topic_id).first()
+    db.session.delete(topic_id)
     db.session.commit()
-    return redirect(url_for('python.html'))
+    return redirect(url_for('pythonPage'))
 
-@app.route('/deleteDocker/<int:topic_id>', methods=['POST']) 
+@app.route('/deleteDocker/<int:topic_id>') 
 def deleteDocker(topic_id):
-    topic = dockerTable.query.filter_by(id=topic_id).first()
-    db.session.delete(topic)
+    topic_id = dockerTable.query.filter_by(id=topic_id).first()
+    db.session.delete(topic_id)
     db.session.commit()
-    return redirect(url_for('docker.html'))
+    return redirect(url_for('dockerPage'))
 
 
-@app.route('/deleteAWS/<int:topic_id>', methods=['POST']) 
+@app.route('/deleteAWS/<int:topic_id>') 
 def deleteAWS(topic_id):
-    topic = awsTable.query.filter_by(id=topic_id).first()
-    db.session.delete(topic)
+    topic_id = awsTable.query.filter_by(id=topic_id).first()
+    db.session.delete(topic_id)
     db.session.commit()
-    return redirect(url_for('aws_page.html'))
+    return redirect(url_for('awsPage'))
 
 @app.route("/updateLinux/<int:topic_id>", methods = ["POST", "GET"])
 def updateLinux(topic_id):
@@ -153,11 +153,11 @@ def updateLinux(topic_id):
             updateTopic.url_link = request.form["updateLinux"]
             try:
                db.session.commit()
-               return redirect(url_for("linuxPage"))
+               return redirect(url_for('linuxPage'))
             except:
                return "There was a problem updating the linux table"
     else: 
-        return render_template("update_linux.html", updateTopic=updateTopic)
+        return render_template('update_linux.html', updateTopic=updateTopic)
 
 @app.route("/updatePython/<int:topic_id>", methods = ["POST", "GET"])
 def updatePython(topic_id):
@@ -168,7 +168,7 @@ def updatePython(topic_id):
             updateTopic.url_link = request.form["updatePython"]
             try:
                db.session.commit()
-               return redirect(url_for("pythonPage"))
+               return redirect(url_for('pythonPage'))
             except:
                return "There was a problem updating the python table"
     else: 
@@ -183,7 +183,7 @@ def updateDocker(topic_id):
             updateTopic.url_link = request.form["updateDocker"]
             try:
                db.session.commit()
-               return redirect(url_for("dockerPage"))
+               return redirect(url_for('dockerPage'))
             except:
                return "There was a problem updating the docker table"
     else: 
@@ -198,7 +198,7 @@ def updateAWS(topic_id):
             updateTopic.url_link = request.form["updateAWS"]
             try:
                db.session.commit()
-               return redirect(url_for("awsPage"))
+               return redirect(url_for('awsPage'))
             except:
                return "There was a problem updating the linux table"
     else: 
