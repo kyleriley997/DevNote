@@ -42,11 +42,11 @@ def dockerPage():
 def awsPage():
     aws_list = awsTable.query.all() #returns list of item
     print(aws_list)
-    return render_template('aws.html',aws_list=aws_list) #what is displayed on page
+    return render_template('aws_page.html',aws_list=aws_list) #what is displayed on page
 
 @app.route("/addLinux", methods=["POST"])
 def addLinux():
-    url_link = request.form.get("url_link")
+    url_link = request.form["url_link"]
 
     new_record = linuxTable(url_link=url_link)
     db.session.add(new_record)
@@ -75,8 +75,8 @@ def addPython():
     #print(record)
 
     print(red.hgetall(id))
-
-    return render_template('python.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
+    return redirect(url_for('pythonPage'))
+    #return render_template('python.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 @app.route("/addDocker", methods=["POST"])
 def addDocker():
@@ -92,8 +92,8 @@ def addDocker():
     #print(record)
 
     print(red.hgetall(id))
-
-    return render_template('docker.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
+    return redirect(url_for('dockerPage'))
+    #return render_template('docker.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 @app.route("/addAWS", methods=["POST"])
 def addAWS():
@@ -109,8 +109,8 @@ def addAWS():
     #print(record)
 
     print(red.hgetall(id))
-    #return redirect(url_for("awsPage"))
-    return render_template('aws_page.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
+    return redirect(url_for("awsPage"))
+    #return render_template('aws_page.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 
 # create different delete routes for each url page. No if and else. 
