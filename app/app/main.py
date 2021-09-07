@@ -119,7 +119,7 @@ def deleteLinux(topic_id):
     topic = linuxTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
     db.session.commit()
-    return redirect(url_for('linux.html'))
+    return redirect(url_for('linux_Page'))
 
    
 @app.route('/deletePython/<int:topic_id>', methods=['POST']) 
@@ -127,14 +127,14 @@ def deletePython(topic_id):
     topic = pythonTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
     db.session.commit()
-    return redirect(url_for('python.html'))
+    return redirect(url_for('python_page'))
 
 @app.route('/deleteDocker/<int:topic_id>', methods=['POST']) 
 def deleteDocker(topic_id):
     topic = dockerTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
     db.session.commit()
-    return redirect(url_for('docker.html'))
+    return redirect(url_for('docker_page'))
 
 
 @app.route('/deleteAWS/<int:topic_id>', methods=['POST']) 
@@ -142,7 +142,7 @@ def deleteAWS(topic_id):
     topic = awsTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
     db.session.commit()
-    return redirect(url_for('aws_page.html'))
+    return redirect(url_for('aws_page'))
 
 # kept POST and GET because you both functions to update resource 
 @app.route("/updateLinux/<int:topic_id>", methods = ["POST", "GET"])
