@@ -3,7 +3,7 @@ import redis
 # import boto3
 
 app = Flask(__name__) #setting up db
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite' #Name of path to DB, relative path
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://hello_flask@db:5432/hello_flask_dev' #Name of path to DB, relative path
 
 from models import db, linuxTable, pythonTable, dockerTable, awsTable
 
