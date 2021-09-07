@@ -117,10 +117,10 @@ def addAWS():
 # create different delete routes for each url page.  
 @app.route('/deleteLinux/<int:topic_id>') 
 def deleteLinux(topic_id):
-    topic = linuxTable.query.filter_by(id=topic_id).first()
-    db.session.delete(topic)
+    topic_id = linuxTable.query.filter_by(id=topic_id).first()
+    db.session.delete(topic_id)
     db.session.commit()
-    return redirect(url_for('linux.html'))
+    return redirect(url_for("linuxPage"))
 
    
 @app.route('/deletePython/<int:topic_id>') 
@@ -128,14 +128,14 @@ def deletePython(topic_id):
     topic = pythonTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
     db.session.commit()
-    return redirect(url_for('python.html'))
+    return redirect(url_for("pythonPage"))
 
 @app.route('/deleteDocker/<int:topic_id>') 
 def deleteDocker(topic_id):
     topic = dockerTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
     db.session.commit()
-    return redirect(url_for('docker.html'))
+    return redirect(url_for("dockerPage"))
 
 
 @app.route('/deleteAWS/<int:topic_id>') 
@@ -143,7 +143,7 @@ def deleteAWS(topic_id):
     topic = awsTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
     db.session.commit()
-    return redirect(url_for('aws_page.html'))
+    return redirect(url_for("awsPage"))
 
 # kept POST and GET because you both functions to update resource 
 @app.route("/updateLinux/<int:topic_id>", methods = ["POST", "GET"])
