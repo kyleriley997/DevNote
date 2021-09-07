@@ -4,7 +4,7 @@ services:
     web:
         build: ./ 
         environment: 
-            - 'postgresql://hello_flask:hello_flask@db:5432/hello_flask_dev'
+            - 'PYTHONBUFFERED=1'
         ports:
             - '80:80'
         links:
@@ -18,7 +18,7 @@ services:
     db:
         image: postgres:12-alpine
         environment: 
-            - POSTGRES_USER= hello_flask
+            - POSTGRES_USER=hello_flask
             - POSTGRES_PASSWORD=hello_flask
             - POSTGRES_DB=hello_flask_dev
         ports:
