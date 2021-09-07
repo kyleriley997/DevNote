@@ -115,7 +115,7 @@ def addAWS():
 
 
 # create different delete routes for each url page.  
-@app.route('/deleteLinux/<int:topic_id>', methods=['POST']) 
+@app.route('/deleteLinux/<int:topic_id>') 
 def deleteLinux(topic_id):
     topic = linuxTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
@@ -123,14 +123,14 @@ def deleteLinux(topic_id):
     return redirect(url_for('linux.html'))
 
    
-@app.route('/deletePython/<int:topic_id>', methods=['POST']) 
+@app.route('/deletePython/<int:topic_id>') 
 def deletePython(topic_id):
     topic = pythonTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
     db.session.commit()
     return redirect(url_for('python.html'))
 
-@app.route('/deleteDocker/<int:topic_id>', methods=['POST']) 
+@app.route('/deleteDocker/<int:topic_id>') 
 def deleteDocker(topic_id):
     topic = dockerTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
@@ -138,7 +138,7 @@ def deleteDocker(topic_id):
     return redirect(url_for('docker.html'))
 
 
-@app.route('/deleteAWS/<int:topic_id>', methods=['POST']) 
+@app.route('/deleteAWS/<int:topic_id>') 
 def deleteAWS(topic_id):
     topic = awsTable.query.filter_by(id=topic_id).first()
     db.session.delete(topic)
