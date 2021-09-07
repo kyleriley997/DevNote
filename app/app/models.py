@@ -7,7 +7,6 @@ class linuxTable(db.Model):
     url_link = db.Column(db.String)
 
     def __init__(self, url_link):
-        #self.id=id
         self.url_link=url_link
 
     def __repr__(self): #prints out representation of object, 
@@ -17,8 +16,7 @@ class pythonTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     url_link = db.Column(db.String)
 
-    def __init__(self, id, url_link):
-        self.id=id
+    def __init__(self, url_link):
         self.url_link=url_link
 
     def __repr__(self): #prints out representation of object, 
@@ -28,8 +26,7 @@ class dockerTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     url_link = db.Column(db.String)
 
-    def __init__(self, id, url_link):
-        self.id=id
+    def __init__(self, url_link):
         self.url_link=url_link
 
     def __repr__(self): #prints out representation of object, 
@@ -39,8 +36,7 @@ class awsTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     url_link = db.Column(db.String)
 
-    def __init__(self, id, url_link):
-        self.id=id
+    def __init__(self, url_link):
         self.url_link=url_link
 
     def __repr__(self): #prints out representation of object, 
