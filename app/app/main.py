@@ -13,13 +13,13 @@ with app.app_context():
     db.create_all()
     db.session.commit()
 
-red = redis.Redis(host='redis', port=6379, db=0) #redis port
+red = redis.Redis(host='redis', port=6379, db=0) #redis port/default port
 
 @app.route("/")
 def main():
     # records = DevResource.query.all()
     # print(records) #prints entire db records
-    return render_template("linux.html") #(, records=records)
+    return render_template("base.html") #(, records=records)
 
 @app.route("/linuxPage")
 def linuxPage():
@@ -45,7 +45,7 @@ def awsPage():
     print(aws_list)
     return render_template('aws.html',aws_list=aws_list) #what is displayed on page
 
-@app.route("/addLinux", methods=["POST"])
+@app.route("/addLinux", methods=["POST", "GET"])
 def addLinux():
     url_link = request.form.get("url_link")
 
@@ -53,13 +53,13 @@ def addLinux():
     db.session.add(new_record)
     db.session.commit()
     
-    red.hset("url_link", url_link)
+    red.hset("url_link", url_link) #used to add more key value pairs inside redis
 
     #record = linuxTable.query.filter_by(id=id).first() #filters by id #
     #print(record)
 
-    print(red.hgetall(id))
-    return redirect(url_for('linuxPage'))
+    print(red.hgetall(url_link)) #retrieves the value for specific key from redis
+    return redirect(url_for('linuxPage', url_link=url_link, saved=1))
     # return render_template('linux.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 @app.route("/addPython", methods=["POST"])
@@ -209,4 +209,5 @@ def updateAWS(topic_id):
 if __name__ == "__main__":
     # Only for debugging while developing
     app.run(host='0.0.0.0', debug=True, port=80)
+    
 
