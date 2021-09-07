@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Python Commands Resources</title>
+<div class='ui segment'> 
+
+    <a class='ui blue button' href="/">Home</a>
+
+    <a class='ui blue button' href="/linuxPage">Linux</a>
+      
+    <a class='ui blue button' href="/pythonPage">Python</a>
+      
+    <a class='ui blue button' href="/dockerPage">Docker</a>
+      
+    <a class='ui blue button' href="/awsPage">AWS</a>
+      
+</div>
+<!-- <title>Linux Commands Resources</title> -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevNote</title>
-    <form action="/Users/flowers/DevNote/app/app/templates/python.html">"Python path"</form>
-<center>
-    <!--Drop Down-->
+    
+    <center>
+    
     <body>
         <h2>Python</h2>
     </body>
-    <label for="Topics">Choose a Topic:</label>
-    
-    <select name="Topics">
-        <option value="Linux">Linux</option>
-        gi<option value="Python">Python</option>
-        <option value="Docker">Docker</option>
-        <option value="AWS">AWS</option>
+    <form action="/addPython" method="POST">
+        
+        <label for="phone">Want to contribute to this list?</label><br><br>
+        <input type= "text" name="url_link" placeholder="Enter link here"><br><br>
         <input type="submit">
-</center>
+        
+    </form>
+
+    </center>
     </select>
-    <li>Python RESOURCES</li>
-    <!--This will be the link to the website resources -->
-    <p> <a href = "python" >python</a></p>
-    <p>This is link will show you is basic BASH commands you can use 
-        on a linux machine.
-    </p>
-     {% if linux %} 
-     <!--This should be the link to the other pages -->
-     <a href= ""> </a>
-    {% endif %}
+    <li>PYTHON RESOURCES</li>
+    <br>
+    <br>
+    {% for resource in py_list %} <!--allows us to access items in linux_list-->
+    <div class='ui segment'>
+        <p class='ui big header'> {{resource.id}} | {{resource.url_link}} </p> <!--shows id and title of items in linux list-->
+
+        <!--adds update and delete button-->
+        <a class='ui blue button' href="/updatePython/{{ resource.id }}">Update</a>
+        <a class='ui red button' href="/deletePython/{{ resource.id}}">Delete</a>
+    </div>
+    {% endfor %}
+
 </head>
 
- 
+<body>
+
+</body>
+
