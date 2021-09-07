@@ -121,7 +121,7 @@ def deleteLinux(topic_id):
     db.session.commit()
     return redirect(url_for('linuxPage'))
 
-   
+# deleted 'POST' because program thought we were creating new information by deleting it which caused an issue 
 @app.route('/deletePython/<int:topic_id>') 
 def deletePython(topic_id):
     topic_id = pythonTable.query.filter_by(id=topic_id).first()
@@ -144,6 +144,7 @@ def deleteAWS(topic_id):
     db.session.commit()
     return redirect(url_for('awsPage'))
 
+# kept POST and GET because you both functions to update resource 
 @app.route("/updateLinux/<int:topic_id>", methods = ["POST", "GET"])
 def updateLinux(topic_id):
     #update current item

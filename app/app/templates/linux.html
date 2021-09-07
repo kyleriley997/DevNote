@@ -36,9 +36,9 @@
     <li>LINUX RESOURCES</li>
     <br>
     <br>
-    {% for resource in linux_list %} <!--allows us to access items in todo_list-->
+    {% for resource in linux_list %} <!--allows us to access items in linux_list-->
     <div class='ui segment'>
-        <p class='ui big header'> {{resource.id}} | {{resource.url_link}} </p> <!--shows id and title of items in todo list-->
+        <p class='ui big header'> {{resource.id}} | {{resource.url_link}} </p> <!--shows id and title of items in linux list-->
 
         <!--adds update and delete button-->
         <a class='ui blue button' href="/updateLinux/{{ resource.id }}">Update</a>
