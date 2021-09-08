@@ -45,9 +45,9 @@ def awsPage():
     print(aws_list)
     return render_template('aws_page.html',aws_list=aws_list) #what is displayed on page
 
-@app.route("/addLinux", methods=["POST", "GET"])
+@app.route("/addLinux", methods=["POST"])
 def addLinux():
-    url_link = request.form["url_link"]
+    url_link = str(request.form["url_link"])
 
     new_record = linuxTable(url_link=url_link)
     db.session.add(new_record)
@@ -59,7 +59,7 @@ def addLinux():
     #print(record)
 
     print(red.hgetall(url_link))
-    return redirect(url_for("linux.html"))
+    return redirect(url_for("linuxPage", url_link=url_link))
     # return render_template('linux.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 @app.route("/addPython", methods=["POST"])
