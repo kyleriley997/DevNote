@@ -1,8 +1,4 @@
 Flask==2.0.1
 redis==2.10.6
-<<<<<<< HEAD
-Flask-SQLAlchemy==2.5.1
-=======
 Flask-SQLAlchemy==2.5.1
 psycopg2-binary
->>>>>>> a34ff50dec17709cc852612c78ad8636a0cbcfc8

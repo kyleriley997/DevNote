@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>AWS Commands Resources</title>
+<div class='ui segment'> 
+
+    <a class='ui blue button' href="/">Home</a>
+
+    <a class='ui blue button' href="/linuxPage">Linux</a>
+      
+    <a class='ui blue button' href="/pythonPage">Python</a>
+      
+    <a class='ui blue button' href="/dockerPage">Docker</a>
+      
+    <a class='ui blue button' href="/awsPage">AWS</a>
+      
+</div>
+<!-- <title>Linux Commands Resources</title> -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevNote</title>
-    <form action="placeholder">"Python path"</form>
-<center>
-    <!--Drop Down-->
+    
+    <center>
+    
     <body>
         <h2>AWS</h2>
     </body>
-    <label for="Topics">Choose a Topic:</label>
-    <select name="Topics">
-        <option value="Linux">Linux</option>
-        <option value="Python">Python</option>
-        <option value="Docker">Docker</option>
-        <option value="AWS">AWS</option>
+    <form action="/addAWS" method="POST">
+        
+        <label for="phone">Want to contribute to this list?</label><br><br>
+        <input type= "text" name="url_link" placeholder="Enter link here"><br><br>
         <input type="submit">
-</center>
+        
+    </form>
+
+    </center>
     </select>
     <li>AWS RESOURCES</li>
-    <!--This will be the link to the website resources -->
-    <p> <a href = ""> AWS Basic </a></p>
-    <p>This is link will show you is basic BASH commands you can use 
-        on a linux machine.
-    </p>
-     % if Python % 
-     <!--This should be the link to the other pages -->
-     <a href= ""> </a>
-    
+    <br>
+    <br>
+    {% for resource in aws_list %} <!--allows us to access items in linux_list-->
+    <div class='ui segment'>
+        <p class='ui big header'> {{resource.id}} | {{resource.url_link}} </p> <!--shows id and title of items in linux list-->
+
+        <!--adds update and delete button-->
+        <a class='ui blue button' href="/updateAWS/{{ resource.id }}">Update</a>
+        <a class='ui red button' href="/deleteAWS/{{ resource.id }}">Delete</a>
+    </div>
+    {% endfor %}
+
 </head>
+
+<body>
+
+</body>

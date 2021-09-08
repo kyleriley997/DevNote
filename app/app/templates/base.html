@@ -29,4 +29,15 @@
 
 </div>
 
+<br>
+{% if get %}
+    <h3> Latest Resources </h3>
+    <small>(From Redis)</small>
+    <!-- <p>{{id}}</p> -->
+    <ul>
+    {% for link in link_list %}
+        <li>{{link}}</li>
+    {% endfor %}
+    </ul>
 
+{% endif %}
