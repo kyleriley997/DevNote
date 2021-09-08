@@ -25,7 +25,8 @@ for service in service_names:
     if desired_count != running_count:
         print(f'SERVICES RUNNING: {running_count}/{desired_count}')    
     
-    
+events = ecs_client.describe_services(cluster = cluster, services=services)['services'][0]['events']
+
 for event in events:
     message = event['message']
     healthy = re.search('has reached a steady state', message)
