@@ -10,7 +10,7 @@ after_success:
 deploy: 
   access_key_id: $AWS_ACCESS_KEY
   app: "DevNote"
-  bucket_name: multi-container-wishlist-app-jd
+  bucket_name: devnote-bucket
   bucket_path: docker
   env: Devnote-env
   provider: elasticbeanstalk
