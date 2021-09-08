@@ -28,18 +28,26 @@
         <label for="phone">Want to contribute to this list?</label><br><br>
         <input type= "text" name="url_link" placeholder="Enter link here"><br><br>
         <input type="submit">
+        
     </form>
 
     </center>
     </select>
-    <li>Docker RESOURCES</li>
-    <!--This will be the link to the website resources -->
-    <p> <a href = "">20 Linux commands every sysadmin should know</a></p>
-    <p>This is link will show you is basic BASH commands you can use 
-        on a linux machine.
-    </p>
-     % if Docker % 
-     <!--This should be the link to the other pages -->
-     <a href= ""> </a>
-    
+    <li>DOCKER RESOURCES</li>
+    <br>
+    <br>
+    {% for resource in dock_list %} <!--allows us to access items in linux_list-->
+    <div class='ui segment'>
+        <p class='ui big header'> {{resource.id}} | {{resource.url_link}} </p> <!--shows id and title of items in linux list-->
+
+        <!--adds update and delete button-->
+        <a class='ui blue button' href="/updateDocker/{{ resource.id }}">Update</a>
+        <a class='ui red button' href="/deleteDocker/{{ resource.id }}">Delete</a>
+    </div>
+    {% endfor %}
+
 </head>
+
+<body>
+
+</body>

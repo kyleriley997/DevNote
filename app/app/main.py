@@ -16,9 +16,12 @@ red = redis.Redis(host='redis', port=6379, db=0) #redis port/default port
 
 @app.route("/")
 def main():
-    # records = DevResource.query.all()
-    # print(records) #prints entire db records
-    return render_template("base.html") #(, records=records)
+    links = []
+    user_links = red.hgetall("ResourceList")
+    print("user links: ", user_links)
+    for link in user_links.values():
+        links.append(link.decode('utf-8'))
+    return render_template("base.html", get=1, msg="(From Redis)", link_list=links) 
 
 @app.route("/linuxPage")
 def linuxPage():
@@ -52,10 +55,9 @@ def addLinux():
     db.session.add(new_record)
     db.session.commit()
     
-    red.hset(id, "url_link", url_link)
+    red.hset("ResourceList", "LinuxResource", url_link)
 
-    print(red.hgetall(id))
-    return redirect(url_for("linuxPage"))
+    return redirect(url_for('linuxPage'))
 
 @app.route("/addPython", methods=["POST"])
 def addPython():
@@ -65,14 +67,10 @@ def addPython():
     db.session.add(new_record)
     db.session.commit()
 
-    red.hset(id, "url_link", url_link)
+    red.hset("ResourceList", "PythonResource", url_link)
 
-    #record = linuxTable.query.filter_by(id=id).first() #filters by id #
-    #print(record)
-
-    print(red.hgetall(id))
     return redirect(url_for('pythonPage'))
-    #return render_template('python.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
+    
 
 @app.route("/addDocker", methods=["POST"])
 def addDocker():
@@ -82,14 +80,9 @@ def addDocker():
     db.session.add(new_record)
     db.session.commit()
 
-    red.hset(id, "url_link", url_link)
+    red.hset("ResourceList", "DockerResource", url_link)
 
-    #record = linuxTable.query.filter_by(id=id).first() #filters by id #
-    #print(record)
-
-    print(red.hgetall(id))
     return redirect(url_for('dockerPage'))
-    #return render_template('docker.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 @app.route("/addAWS", methods=["POST"])
 def addAWS():
@@ -99,14 +92,9 @@ def addAWS():
     db.session.add(new_record)
     db.session.commit()
 
-    red.hset(id, "url_link", url_link)
+    red.hset("ResourceList", "AWSResource", url_link)
 
-    #record = linuxTable.query.filter_by(id=id).first() #filters by id #
-    #print(record)
-
-    print(red.hgetall(id))
     return redirect(url_for("awsPage"))
-    #return render_template('aws_page.html', saved=1, id=id, url_link=red.hget(id, "url_link"))
 
 
 # create different delete routes for each url page.  
