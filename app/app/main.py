@@ -13,7 +13,7 @@ with app.app_context():
     db.session.commit()
 
 red = redis.Redis(host='redis', port=6379, db=0) #redis port/default port
-#test
+
 
 client = boto3.client('elasticbeanstalk')
 
