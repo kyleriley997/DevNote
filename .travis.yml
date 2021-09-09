@@ -3,7 +3,7 @@ install: skip
 services: 
   - docker
 script:
-  - "docker build -t kriley17/devnote ."
+  - "docker build --no-cache -t kriley17/devnote ."
 after_success: 
   - "echo \"$DOCKER_PASSWORD\" | docker login -u \"$DOCKER_ID\" --password-stdin"
   - "docker push kriley17/" 
