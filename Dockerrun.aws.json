@@ -44,7 +44,7 @@
                 "db"
             ],
             "name": "web",
-            "image": "ezekiel17/devnote",
+            "image": "kriley17/devnote",
             "memory": 100,
             "portMappings":[{
                 "containerPort": 80,

@@ -6,13 +6,13 @@ script:
   - "docker build --no-cache -t kriley17/devnote ."
 after_success: 
   - "echo \"$DOCKER_PASSWORD\" | docker login -u \"$DOCKER_ID\" --password-stdin"
-  - "docker push kriley17/" 
+  - "docker push kriley17/devnote" 
 deploy: 
   access_key_id: $AWS_ACCESS_KEY
   app: "DevNote"
   bucket_name: devnote-bucket
   bucket_path: docker
-  env: Devnote-env
+  env: DevNote-env-1
   provider: elasticbeanstalk
   region: us-west-2
   secret_access_key: $AWS_SECRET_KEY
