@@ -3,10 +3,10 @@ install: skip
 services: 
   - docker
 script:
-  - "docker build -t jdiaz67/ezekiel17/devnote ."
+  - "docker build -t kriley17/ezekiel17/devnote ."
 after_success: 
   - "echo \"$DOCKER_PASSWORD\" | docker login -u \"$DOCKER_ID\" --password-stdin"
-  - "docker push jdiaz67/" 
+  - "docker push kriley17/" 
 deploy: 
   access_key_id: $AWS_ACCESS_KEY
   app: "DevNote"
