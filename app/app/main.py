@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import redis 
-# import boto3
+import redis, boto3
 
 app = Flask(__name__) #setting up db
 app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://hello_flask:hello_flask@db:5432/hello_flask_dev' #Name of path to DB, relative path
@@ -14,6 +13,20 @@ with app.app_context():
 
 red = redis.Redis(host='redis', port=6379, db=0) #redis port/default port
 #test
+
+client = boto3.client('elasticbeanstalk')
+
+@app.route("/status")
+def checkHealth():
+    response = client.describe_environment_health(
+        EnvironmentName='DevNote-env-1',
+        AttributeNames=[
+            'Status'|'Color'|'Causes'|'ApplicationMetrics'|'InstancesHealth'|'All'|'HealthStatus'|'RefreshedAt',
+        ]
+    )
+
+    return render_template("boto.html", check=1, health=response)
+
 @app.route("/")
 def main():
     links = []
