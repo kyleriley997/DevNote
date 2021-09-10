@@ -21,9 +21,10 @@ client = boto3.client('elasticbeanstalk', region_name='us-west-2')
 def checkHealth():
     response = client.describe_environment_health(
         EnvironmentName='DevNote-env-1',
-        AttributeNames=[
-            'Status'|'Color'|'Causes'|'ApplicationMetrics'|'InstancesHealth'|'All'|'HealthStatus'|'RefreshedAt',
-        ]
+        AttributeNames=[]
+        # AttributeNames=[
+        #     'Status'|'Color'|'Causes'|'ApplicationMetrics'|'InstancesHealth'|'All'|'HealthStatus'|'RefreshedAt',
+        # ]
     )
 
     return render_template("boto.html", check=1, health=response)
