@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <h lang="en">
-
-{% if get %}
+<body>
+{% if check %}
     <h3> EC2 Instance Health </h3>
     <small>(From AWS Elastic Beanstalk)</small>
     <br>
-    {{health}}
+    <p>{{health}}</p>
 
 {% endif %}
+</body>
