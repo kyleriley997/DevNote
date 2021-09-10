@@ -15,7 +15,7 @@ with app.app_context():
 red = redis.Redis(host='redis', port=6379, db=0) #redis port/default port
 
 
-client = boto3.client('elasticbeanstalk')
+client = boto3.client('elasticbeanstalk', region_name='us-west-2')
 
 @app.route("/status")
 def checkHealth():
