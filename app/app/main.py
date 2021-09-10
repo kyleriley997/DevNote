@@ -25,6 +25,7 @@ def checkHealth():
         # AttributeNames=[
         #     'Status'|'Color'|'Causes'|'ApplicationMetrics'|'InstancesHealth'|'All'|'HealthStatus'|'RefreshedAt',
         # ]
+        #test
     )
 
     return render_template("boto.html", check=1, health=response)
