@@ -19,16 +19,13 @@ client = boto3.client('elasticbeanstalk', region_name='us-west-2')
 
 @app.route("/status")
 def checkHealth():
-    response = client.describe_environment_health(
-        EnvironmentName='DevNote-env-1',
-        AttributeNames=[]
-        # AttributeNames=[
-        #     'Status'|'Color'|'Causes'|'ApplicationMetrics'|'InstancesHealth'|'All'|'HealthStatus'|'RefreshedAt',
-        # ]
-        #test
-    )
+    response = client.describe_environments(
+        ApplicationName='DevNote',
+        EnvironmentNames=['DevNote-env-1']
+        )
+    result = response['Environments'][0]['Health']
 
-    return render_template("boto.html", check=1, health=response)
+    return render_template("boto.html", check=1, health=result)
 
 @app.route("/")
 def main():
