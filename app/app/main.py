@@ -19,13 +19,16 @@ client = boto3.client('elasticbeanstalk', region_name='us-west-2')
 
 @app.route("/status")
 def status():
-    response = client.describe_environments(
-        ApplicationName='DevNote',
-        EnvironmentNames=['DevNote-env-1']
-        )
-    result = response['Environments'][0]['Health']
+    try:
+        response = client.describe_environments(
+            ApplicationName='DevNote',
+            EnvironmentNames=['DevNote-env-1']
+            )
+        result = response['Environments'][0]['Health']
+        return render_template("boto.html", check=1, health=result)
+    except Exception as e: return e
 
-    return render_template("boto.html", check=1, health=result)
+    
 
 @app.route("/")
 def main():
